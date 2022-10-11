@@ -24,4 +24,3 @@ async function extractTests(){
 }
 
 extractTests();
-1
