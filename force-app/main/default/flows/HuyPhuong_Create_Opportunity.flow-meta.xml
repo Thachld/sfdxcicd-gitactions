@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>55.0</apiVersion>
+    <assignments>
+        <name>AssOpp</name>
+        <label>AssOpp</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignmentItems>
+            <assignToReference>OppNew.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Opportunity_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OppNew.StageName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Opportunity_Stage</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OppNew.CloseDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Opportunity_Close_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>OppNew.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>accId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Opp_Rec</targetReference>
+        </connector>
+    </assignments>
+    <dynamicChoiceSets>
+        <name>oppStage</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>StageName</picklistField>
+        <picklistObject>Opportunity</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <interviewLabel>HuyPhuong Create Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HuyPhuong Create Opportunity</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Opp_Rec</name>
+        <label>Create opp record</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <inputReference>OppNew</inputReference>
+    </recordCreates>
+    <screens>
+        <name>Create_Opp</name>
+        <label>Create Opp</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>AssOpp</targetReference>
+        </connector>
+        <fields>
+            <name>Opportunity_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Opportunity Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Opportunity_Stage</name>
+            <choiceReferences>oppStage</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Opportunity Stage</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Opportunity_Close_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>Opportunity Close Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Opp</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>accId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>OppNew</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>
